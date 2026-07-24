@@ -1,16 +1,19 @@
 package raft
 
-import "sync"
+import (
+	"sync"
+	"time"
+)
 
-type NodeState int
+type nodeState int
 
 const (
-	Follower NodeState = iota
+	Follower nodeState = iota
 	Candidate
 	Leader
 )
 
-type RaftNode struct {
+type raftNode struct {
 	mu sync.Mutex
 
 	nodeId int
@@ -22,5 +25,9 @@ type RaftNode struct {
 
 	commitIndex int
 	lastApplied int
-	state       NodeState
+	state       nodeState
+
+	timer *time.Timer
+
+	ticker *time.Ticker
 }
