@@ -2,32 +2,31 @@ package raft
 
 import (
 	"sync"
-	"time"
 )
 
-type nodeState int
+type NodeState int
 
 const (
-	Follower nodeState = iota
+	Follower NodeState = iota
 	Candidate
 	Leader
 )
 
-type raftNode struct {
+type RaftNode struct {
 	mu sync.Mutex
 
-	nodeId int
+	nodeID int
 	peers  []string
 
 	currentTerm int
 	votedFor    int
-	log         []byte
 
 	commitIndex int
 	lastApplied int
-	state       nodeState
-
-	timer *time.Timer
-
-	ticker *time.Ticker
+	state       NodeState
 }
+
+// func NewRaftNode() {
+// }
+
+// func (r *raftNode) Get
