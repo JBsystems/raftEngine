@@ -26,7 +26,14 @@ type RaftNode struct {
 	state       NodeState
 }
 
-// func NewRaftNode() {
-// }
-
-// func (r *raftNode) Get
+func NewRaftNode(nodeID int, peers []string) *RaftNode {
+	return &RaftNode{
+		nodeID:      nodeID,
+		peers:       peers,
+		votedFor:    -1,
+		currentTerm: 0,
+		commitIndex: 0,
+		lastApplied: 0,
+		state:       Follower,
+	}
+}
