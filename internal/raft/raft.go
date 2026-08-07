@@ -24,6 +24,10 @@ type RaftNode struct {
 	commitIndex int
 	lastApplied int
 	state       NodeState
+
+	log        []int
+	matchIndex []int
+	nextIndex  []int
 }
 
 func NewRaftNode(nodeID int, peers []string) *RaftNode {
@@ -36,4 +40,5 @@ func NewRaftNode(nodeID int, peers []string) *RaftNode {
 		lastApplied: 0,
 		state:       Follower,
 	}
+
 }
